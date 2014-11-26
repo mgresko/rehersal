@@ -1,0 +1,11 @@
+GitPython==0.3.2.1
+PyYAML==3.11
+Pygments==2.0.1
+bpython==0.13.1
+gitdb==0.6.0
+py==1.4.26
+pyaml==14.11.3
+pytest==2.6.4
+pyzmq==14.4.1
+smmap==0.8.3
+wsgiref==0.1.2
