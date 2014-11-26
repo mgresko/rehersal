@@ -1,10 +1,15 @@
+import logging
 import subprocess
+
+from config import c
 
 
 EXIT_NO_CHANGE = 0
 EXIT_CHANGES = 2
 EXIT_FAILURE = 4
 EXIT_CHANGES_FAILURES = 6
+
+log = logging.getLogger(__name__)
 
 
 class Puppet(object):
@@ -49,6 +54,8 @@ class Puppet(object):
             '--modulepath={0}'.format(module_path),
             manifest_path
         ]
+
+        log.debug('Running puppet command: {0}'.format(command))
         try:
             output = subprocess.check_output(
                 command,
@@ -58,5 +65,7 @@ class Puppet(object):
             output = e['output']
             returncode = e['returncode']
         finally:
+            self._output = output
+            self._returncode = returncode
             self._scm.cleanup()
 

@@ -34,3 +34,12 @@ class AgentStreamHandler(MessageHandler):
     def puppet(self, data):
         """Run puppet with given branch"""
         log.info("Running puppet on branch: {0}".format(data['branch']))
+        puppet_handler = self._request_handler
+        puppet_handler.run(data['branch'])
+        log.info(
+            "Puppet run completed on branch: {0} ReturnCode: {1}\n{2}".format(
+                data['branch'],
+                puppet_handler.returncode,
+                puppet_handler.output
+            )
+        )
